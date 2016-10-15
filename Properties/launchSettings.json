@@ -19,7 +19,6 @@
     "DroneService": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:1000/api/values",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

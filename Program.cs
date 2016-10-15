@@ -24,7 +24,7 @@ namespace DroneService
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls("http://129.31.239.208:80")
+
                 .Build();
 
             host.Run();

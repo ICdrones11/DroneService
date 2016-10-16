@@ -37,8 +37,16 @@ namespace DroneService
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            app.UseStaticFiles();
+            app.UseMvc(routes =>  
+                {
 
-            app.UseMvc();
+
+                   routes.MapRoute(
+                        name: "Default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
+                }
+            );
         }
     }
 }

@@ -57,10 +57,18 @@ namespace DroneService.Controllers
         public IActionResult Put(string id, [FromBody]Drone droneData)
         {
             droneData.checkUpdate();
+
             
             Drone drone = DronesRepo.Find(id);
             if (drone == null) {
-                return NotFound();
+                // First drone update, register it.
+                if (drone.checkRegister()) {
+                    DronesRepo.Add(droneData);
+                    drone = droneData;
+                    return Ok();
+                } else {
+                    return BadRequest("Not all required field specified.");
+                }
             }
             System.Console.WriteLine(drone);
             drone.Update(droneData);

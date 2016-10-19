@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/ICdrones11/DroneService.svg?branch=master)](https://travis-ci.org/ICdrones11/DroneService)   
+# Drone Service [![Build Status](https://travis-ci.org/ICdrones11/DroneService.svg?branch=master)](https://travis-ci.org/ICdrones11/DroneService)   
+Third Year Group Project. 
 <!--
 # Welcome to ASP.NET Core
 

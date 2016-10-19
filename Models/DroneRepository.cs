@@ -43,10 +43,8 @@ namespace DroneService.Models
         public void Tick() {
             System.Console.WriteLine("Repo tick");
             foreach (Drone drone in _drones.Values) {
-
                 drone.Tick();
             }
-
         }
 
         public void Reset() {

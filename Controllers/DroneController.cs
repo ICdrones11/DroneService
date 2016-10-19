@@ -50,10 +50,6 @@ namespace DroneService.Controllers
             {
                 return BadRequest("Not all required field specified.");
             }
-            
-
-            
-            
         }
 
         // PUT api/values/5

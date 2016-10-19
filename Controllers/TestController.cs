@@ -23,9 +23,9 @@ namespace DroneService.Controllers
         public IActionResult tick()
         {
       
-                DronesRepo.Tick();
+                // Does nothing yet
+                // DronesRepo.Tick();
                 return Ok();
-
         }
     }
 }

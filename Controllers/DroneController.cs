@@ -58,7 +58,6 @@ namespace DroneService.Controllers
         {
             droneData.checkUpdate();
 
-            
             Drone drone = DronesRepo.Find(id);
             if (drone == null) {
                 // First drone update, register it.

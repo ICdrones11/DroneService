@@ -1,4 +1,3 @@
-
 using DroneService.Util;
 using DroneService.Constants;
 
@@ -27,17 +26,12 @@ namespace DroneService.Models
         
         public void Tick() {
             System.Console.WriteLine("Tick");
-            if (CurrentStatus == Status.Move) {
-                move();
-            }
         }
 
         private void move() {
             System.Console.WriteLine("Move");
-            Position.add(Velocity);
+            // Position.add(Velocity);
         }
-
-
 
         // Check data validity. 
         public bool checkRegister() {

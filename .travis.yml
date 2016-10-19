@@ -1,9 +1,9 @@
 language: csharp  
-dotnet: latest
+dotnet: 1.0.0-preview2-003133
 sudo: required  
 dist: trusty  
 env:  
-  - CLI_VERSION=latest
+  - CLI_VERSION=1.0.0-preview2-003133
 addons:  
   apt:
     packages:

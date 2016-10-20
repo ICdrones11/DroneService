@@ -14,12 +14,13 @@ dotnet restore
 # Ideally we would use the 'dotnet test' command to test netcoreapp and net451 so restrict for now 
 # but this currently doesn't work due to https://github.com/dotnet/cli/issues/3073 so restrict to netcoreapp
 
-#dotnet test ./test/TEST_PROJECT_NAME -c Release -f netcoreapp1.0
-#dotnet test
-
 # Instead, run directly with mono for the full .net version 
 #dotnet build ./test/TEST_PROJECT_NAME -c Release -f net451
 dotnet build
+
+#dotnet test ./test/TEST_PROJECT_NAME -c Release -f netcoreapp1.0
+dotnet restore ./test
+dotnet test ./test
 
 #mono \  
 #./test/TEST_PROJECT_NAME/bin/Release/net451/*/dotnet-test-xunit.exe \

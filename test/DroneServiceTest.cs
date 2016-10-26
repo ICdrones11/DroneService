@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace DroneServiceTests
+namespace DroneTests
 {
     public class DroneServiceTest
     {

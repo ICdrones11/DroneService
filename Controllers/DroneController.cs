@@ -30,48 +30,27 @@ namespace DroneService.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            Drone drone = DronesRepo.Find(id);
-            if(drone != null) {
-                return Json(drone);
-            } else {
-                return NotFound();
+            try {
+                return Json(DronesRepo.Get(id));
+            }  catch (Exception e) {
+                // TODO: Return proper http code on error.
+                return BadRequest(e);
             }
         }
 
-        // POST api/
-        [HttpPost]
-        public IActionResult Post([FromBody]Drone drone)
-        {
-            if (drone.checkRegister()) {
-                System.Console.WriteLine("Drone added.");
-                DronesRepo.Add(drone);
-                return Ok();
-            } else
-            {
-                return BadRequest("Not all required field specified.");
-            }
-        }
 
-        // PUT api/values/5
+        // PUT api/drone/5
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody]Drone droneData)
         {
-            droneData.checkUpdate();
-
-            Drone drone = DronesRepo.Find(id);
-            if (drone == null) {
-                // First drone update, register it.
-                if (droneData.checkRegister()) {
-                    DronesRepo.Add(droneData);
-                    drone = droneData;
-                    return Ok();
-                } else {
-                    return BadRequest("Not all required field specified.");
-                }
+            
+            try {
+                DronesRepo.Put(droneData);
+                return Ok();
             }
-            System.Console.WriteLine(drone);
-            drone.Update(droneData);
-            return Ok();
+            catch (Exception e) {
+                return BadRequest(e);
+            }
 
         }
 

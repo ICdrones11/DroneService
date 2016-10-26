@@ -33,8 +33,9 @@ namespace DroneService.Models
             // Position.add(Velocity);
         }
 
-        // Check data validity. 
-        public bool checkRegister() {
+
+        // Check data validity.
+        public bool checkData() {
             if (this.StartPoint == null) {
                 System.Console.WriteLine("Startpoint not specified");
                 return false;
@@ -47,10 +48,6 @@ namespace DroneService.Models
                 System.Console.WriteLine("Uid not specified");
                 return false;
             } 
-            return true;
-        }
-
-        public bool checkUpdate() {
             if (this.Velocity == null) {
                 System.Console.WriteLine("ActualVelocity not specified");
                 return false;              
@@ -60,6 +57,10 @@ namespace DroneService.Models
                 System.Console.WriteLine("Position not specified");
                 return false;           
             }
+            if (this.CurrentStatus == null) {
+                System.Console.WriteLine("Status not specified");
+                return false;           
+            }            
             return true;
         }       
 

@@ -21,12 +21,7 @@ namespace DroneService.Models
             _drones[drone.Uid] = drone;
         }
 
-        public Drone Find(string uid)
-        {
-            Drone drone;
-            _drones.TryGetValue(uid, out drone);
-            return drone;
-        }
+
 
         public Drone Remove(string uid)
         {
@@ -45,10 +40,35 @@ namespace DroneService.Models
             foreach (Drone drone in _drones.Values) {
                 drone.Tick();
             }
+
+            // Collision detection
         }
+
+        public int Length() {
+            return _drones.Count;
+        }
+
+
 
         public void Reset() {
             _drones = new ConcurrentDictionary<string, Drone>();
         }
+
+
+        // API methods
+        public void Put(Drone drone) {
+            drone.checkData();
+            
+            _drones.AddOrUpdate(drone.Uid, drone, (key, oldvalue) => drone);
+
+        }
+
+        public Drone Get(string id) {
+            Drone drone;
+            _drones.TryGetValue(id, out drone);
+            return drone;
+        }
+
+    
     }
 }

@@ -3,6 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
+using DroneService.Util;
+
 
 namespace DroneService.Models
 {
@@ -58,15 +60,23 @@ namespace DroneService.Models
         // API methods
         public void Put(Drone drone) {
             drone.checkData();
-            
-            _drones.AddOrUpdate(drone.Uid, drone, (key, oldvalue) => drone);
+            Drone cartDrone = drone.ToCartesian();
+            Util.Vector difference = Util.Vector.Subtract(cartDrone.EndPoint, cartDrone.StartPoint);
+            if (Util.Vector.Norm(difference) < Constants.Constants.LandThreshold) {
+                cartDrone.CurrentStatus = Status.Land;
+            }
+            Util.Vector velocity = Util.Vector.ConstMultiply(Util.Vector.Normalize(difference), 
+                                                             Constants.Constants.MaxSpeed);
+            _drones.AddOrUpdate(cartDrone.Uid, drone, (key, oldvalue) => cartDrone);
+
 
         }
 
         public Drone Get(string id) {
             Drone drone;
             _drones.TryGetValue(id, out drone);
-            return drone;
+            Drone llaDrone = drone.ToLLA();
+            return llaDrone;
         }
 
     

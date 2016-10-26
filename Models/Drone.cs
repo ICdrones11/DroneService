@@ -1,4 +1,5 @@
 using DroneService.Util;
+using System;
 using DroneService.Constants;
 
 namespace DroneService.Models
@@ -13,6 +14,10 @@ namespace DroneService.Models
         public Vector DesiredVelocity {get; set; }
         public Status CurrentStatus {get; set; }
 
+        public Drone Clone() {
+            return (Drone) this.MemberwiseClone();
+        }
+
         public void Update(Drone droneData) {
             Velocity = droneData.Velocity;
             Position = droneData.Position;
@@ -22,6 +27,24 @@ namespace DroneService.Models
             DesiredVelocity.X = System.Math.Min(EndPoint.X - Position.X, Constants.Constants.MaxSpeed);
             DesiredVelocity.Y = System.Math.Min(EndPoint.Y - Position.Y, Constants.Constants.MaxSpeed);
             DesiredVelocity.Z = System.Math.Min(EndPoint.Z - Position.Z, Constants.Constants.MaxSpeed);
+        }
+
+
+        public Drone ToCartesian() {
+            Drone cartDrone = this.Clone();
+            cartDrone.StartPoint = Vector.ToCartesian(StartPoint);
+            cartDrone.EndPoint = Vector.ToCartesian(EndPoint);
+            cartDrone.Position = Vector.ToCartesian(Position);
+            return cartDrone;
+        }
+
+        public Drone ToLLA() {
+            Drone llaDrone = this.Clone();
+            llaDrone.StartPoint = Vector.ToLLA(StartPoint);
+            llaDrone.EndPoint = Vector.ToLLA(EndPoint);
+            llaDrone.Position = Vector.ToLLA(Position);
+            return llaDrone;
+
         }
         
         public void Tick() {

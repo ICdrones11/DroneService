@@ -20,13 +20,13 @@ namespace DroneTests
         {
         	Drone drone1 = Util.TestDrone();
         	Drone drone2 = Util.TestDrone();
-        	drone2.CurrentStatus = Status.Move;
+
         	DroneRepository repo = new DroneRepository();
         	repo.Put(drone1);
 			repo.Put(drone2);
         	Assert.Equal(1, repo.Length());
         	// Check if the drone actually got updated.
-        	Assert.Equal(repo.Get(drone2.Uid).CurrentStatus, drone2.CurrentStatus);
+        	Assert.Equal(repo.Get(drone2.Uid).Uid, drone2.Uid);
         }
 
         [Fact]
